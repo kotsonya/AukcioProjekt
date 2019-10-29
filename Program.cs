@@ -105,10 +105,22 @@ namespace AukcioProjekt_ns
                 default:
                     this.licitekSzama++;
                     double szorzo = (1 + Math.Round(Convert.ToDouble(mertek) / 100,2));
-                    this.legmagasabbLicit = Convert.ToInt32(this.legmagasabbLicit * szorzo);
+                    this.legmagasabbLicit = kerekit(this.legmagasabbLicit * szorzo);
                     this.legmagasabbLicitIdeje = DateTime.Now;
                     break;
             }
+        }
+        public int kerekit(double alap_double)
+        {
+            string alap = Convert.ToString(Math.Round(alap_double,0));
+            char[]  kerekitett_char = Convert.ToString(Math.Round(alap_double, 0)).ToCharArray(0, alap.Length);
+
+            for (int i = 2; i < kerekitett_char.Length; i++)
+            {
+                kerekitett_char[i] = '0';
+            }
+            string kerekitett_str = new string(kerekitett_char);
+            return Convert.ToInt32(kerekitett_str);
         }
 
     }
